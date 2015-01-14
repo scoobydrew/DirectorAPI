@@ -3,10 +3,11 @@ var https = require('https');
 var bl = require('bl');
 var router = express.Router();
 
-
 /* GET home page. */
 router.get('/', function(req, res) {
-  res.render('index', { title: 'Express' });
+	res.render('index', {
+		title : 'Express'
+	});
 });
 
 /*
@@ -25,7 +26,7 @@ router.get('/directorlist', function(req, res) {
 router.post('/directors', function(req, res) {
 	var db = req.db;
 	var id = req.body.livestream_id;
-	db.collection('directorlist').findOne({ //is this id in our database?
+	db.collection('directorlist').findOne({//is this id in our database?
 		livestream_id : +id
 	}, function(e, result) {
 		if (e !== null) {
@@ -33,7 +34,7 @@ router.post('/directors', function(req, res) {
 			res.end();
 			return;
 		}
-		if (result === null) { // if not, get the information from the Livestream API
+		if (result === null) {// if not, get the information from the Livestream API
 			var options = {
 				host : 'api.new.livestream.com',
 				port : 443,
@@ -52,7 +53,7 @@ router.post('/directors', function(req, res) {
 						favorite_camera : "",
 						favorite_movies : []
 					};
-					db.collection('directorlist').insert(director, function(err, result) { // save the new data so we have it for next time
+					db.collection('directorlist').insert(director, function(err, result) {// save the new data so we have it for next time
 						if (err === null) {
 							res.setHeader('Content-Type', 'application/json');
 							res.json(director);
@@ -66,19 +67,52 @@ router.post('/directors', function(req, res) {
 				console.error(e);
 			});
 			request.end();
-		} else { // if we had the data, send it back
+		} else {// if we had the data, send it back
 			res.setHeader('Content-Type', 'application/json');
 			res.json(result);
 		}
 	});
 });
-
-router.post('/director/:id', function(req, res){
-	
+/*
+ * POST to update director.
+ */
+router.post('/director/:id', function(req, res) {
+	var db = req.db;
+	var director = req.body._id;
+	db.collection('directorlist').findOne({//is this id in our database?
+		_id : +director
+	}, function(e, result) {
+		if (e !== null) {
+			res.status(500).send("Database error");
+			res.end();
+			return;
+		}
+		if (result === null) {
+			res.send({
+				msg : "No record with this livestream id exists in the directors database."
+			});
+			res.end();
+			return;
+		} else {		
+			db.collection('directorlist').update({
+				_id : req.body._id
+			}, {
+				'$set' : {
+					favorite_camera : req.body.favorite_camera,
+					favorite_movies : req.body.favorite_movies
+				}
+			}, function(err, result) {
+				if (err)
+					throw err;
+				if (result)
+					console.log('Updated!');
+			});
+		}
+	});
 });
 
 /*
- * DELETE to deleteuser.
+ * DELETE to delete director.
  */
 router.delete('/deletedirector/:id', function(req, res) {
 	var db = req.db;
