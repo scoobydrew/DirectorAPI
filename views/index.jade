@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+
+  #addUser
+    fieldset
+      input#inputUserName(type='text', placeholder='Livestream ID')
+      button#btnTest Test
+  // /ADD USER
+  
+  #userInfo
+    h2 User Info
+    p
+      strong Name:
+      |  <span id='directorId'></span>
+      br
+      strong Age:
+      |  <span id='directorName'></span>
+  // /USER INFO
