@@ -78,9 +78,9 @@ router.post('/directors', function(req, res) {
  */
 router.post('/director/:id', function(req, res) {
 	var db = req.db;
-	var director = req.body._id;
+	var director = req.params.id;
 	db.collection('directorlist').findOne({//is this id in our database?
-		_id : +director
+		livestream_id : +director
 	}, function(e, result) {
 		if (e !== null) {
 			res.status(500).send("Database error");
@@ -93,19 +93,41 @@ router.post('/director/:id', function(req, res) {
 			});
 			res.end();
 			return;
-		} else {		
+		} else {
+			//console.log(req.body);
+			var movies = req.body.favorite_movies;
+			if ( typeof movies === "string") {
+				res.send({
+					msg : "Favorite movies must be sent as an array."
+				});
+				res.end();
+				return;
+			}
+			for (var i = 0; i < movies.length; i++) {
+				movies[i] = movies[i].trim();
+			};
+
 			db.collection('directorlist').update({
-				_id : req.body._id
+				livestream_id : +director
 			}, {
 				'$set' : {
 					favorite_camera : req.body.favorite_camera,
-					favorite_movies : req.body.favorite_movies
+					favorite_movies : movies
 				}
 			}, function(err, result) {
-				if (err)
-					throw err;
-				if (result)
-					console.log('Updated!');
+				if (err) {
+					res.send({
+						msg : "Director could not be updated."
+					});
+					res.end();
+					return;
+				} else if (result) {
+					res.send({
+						msg : ""
+					});
+					res.end();
+					return;
+				}
 			});
 		}
 	});

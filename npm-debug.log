@@ -1,28 +1,27 @@
 0 info it worked if it ends with ok
-1 verbose cli [ 'c:\\Program Files\\nodejs\\node.exe',
-1 verbose cli   'c:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
-1 verbose cli   'start' ]
-2 info using npm@1.4.28
-3 info using node@v0.10.32
-4 verbose run-script [ 'prestart', 'start', 'poststart' ]
-5 info prestart livestream-directors@0.0.0
-6 info start livestream-directors@0.0.0
-7 verbose unsafe-perm in lifecycle true
-8 info livestream-directors@0.0.0 Failed to exec start script
-9 error livestream-directors@0.0.0 start: `node ./bin/www`
-9 error Exit status 8
-10 error Failed at the livestream-directors@0.0.0 start script.
-10 error This is most likely a problem with the livestream-directors package,
-10 error not with npm itself.
-10 error Tell the author that this fails on your system:
-10 error     node ./bin/www
-10 error You can get their info via:
-10 error     npm owner ls livestream-directors
-10 error There is likely additional logging output above.
-11 error System Windows_NT 6.1.7601
-12 error command "c:\\Program Files\\nodejs\\node.exe" "c:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "start"
-13 error cwd C:\cygwin64\home\dsmith\sites\livestream-directors
-14 error node -v v0.10.32
-15 error npm -v 1.4.28
-16 error code ELIFECYCLE
-17 verbose exit [ 1, true ]
+1 verbose cli [ '/usr/bin/node', '/usr/bin/npm', 'start' ]
+2 info using npm@1.4.23
+3 info using node@v0.10.31
+4 verbose node symlink /usr/bin/node
+5 verbose run-script [ 'prestart', 'start', 'poststart' ]
+6 info prestart livestream-directors@0.0.0
+7 info start livestream-directors@0.0.0
+8 verbose unsafe-perm in lifecycle true
+9 info livestream-directors@0.0.0 Failed to exec start script
+10 error livestream-directors@0.0.0 start: `node ./bin/www`
+10 error Exit status 8
+11 error Failed at the livestream-directors@0.0.0 start script.
+11 error This is most likely a problem with the livestream-directors package,
+11 error not with npm itself.
+11 error Tell the author that this fails on your system:
+11 error     node ./bin/www
+11 error You can get their info via:
+11 error     npm owner ls livestream-directors
+11 error There is likely additional logging output above.
+12 error System Linux 3.13.0-43-generic
+13 error command "/usr/bin/node" "/usr/bin/npm" "start"
+14 error cwd /home/drew/Projects/livestream-directors
+15 error node -v v0.10.31
+16 error npm -v 1.4.23
+17 error code ELIFECYCLE
+18 verbose exit [ 1, true ]

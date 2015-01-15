@@ -10,17 +10,20 @@ block content
         #userInfo
             h2 User Info
             p
-                strong Name:
-                |  <span id='dirName'></span>
-                br
-                strong Age:
-                |  <span id='dirDOB'></span>
-                br
-                strong Favorite Camera:
-                |  <span id='dirFavoriteCam'></span>
-                br
-                strong Favorite Movies:
-                |  <span id='dirMovies'></span>
+                fieldset           	
+                    strong Name:
+                    |  <span id='dirName'></span>
+                    br
+                    strong Age:
+                    |  <span id='dirDOB'></span>
+                    br
+                    strong Favorite Camera:
+                    input#inputFavCam(type='text', placeholder='Favorite Camera')
+                    br
+                    strong Favorite Movies:
+                    input#inputFavMov(type='text', placeholder='Favorite Movies')
+                    br
+                    button#btnEdit Edit Director
         // /USER INFO
 
         // USER LIST

@@ -48,7 +48,7 @@ a {
 	top: 0;
 	left: 0;
 }
-#userInfo p {
+#userInfo fieldset {
 	padding: 15px;
 	border: 1px solid #CCC;
 	background: rgba(80,120,255,0.05);
