@@ -1,6 +1,7 @@
 var express = require('express');
 var https = require('https');
 var bl = require('bl');
+var sanitize = require('mongo-sanitize');
 var router = express.Router();
 
 /* GET home page. */
@@ -27,7 +28,7 @@ router.post('/directors', function(req, res) {
 	var db = req.db;
 	var id = req.body.livestream_id;
 	db.collection('directorlist').findOne({//is this id in our database?
-		livestream_id : +id
+		livestream_id : sanitize(+id)
 	}, function(e, result) {
 		if (e !== null) {
 			res.status(500).send("Database error");
@@ -95,7 +96,7 @@ router.post('/director/:id', function(req, res) {
 			return;
 		} else {
 			//console.log(req.body);
-			var movies = req.body.favorite_movies;
+			var movies = sanitize(req.body.favorite_movies);
 			if ( typeof movies === "string") {
 				res.send({
 					msg : "Favorite movies must be sent as an array."
@@ -111,7 +112,7 @@ router.post('/director/:id', function(req, res) {
 				livestream_id : +director
 			}, {
 				'$set' : {
-					favorite_camera : req.body.favorite_camera,
+					favorite_camera : sanitize(req.body.favorite_camera),
 					favorite_movies : movies
 				}
 			}, function(err, result) {

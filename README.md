@@ -4,8 +4,7 @@ For Livestream interview coding exercise.
 ## Setup
 Clone the repository into the directory of your choosing.  You will need to have Node.JS installed to run the webserver. 
  
-If you have installed it, run the following command to install dependencies.
-`npm install`
+If you have installed it, run the following command to install dependencies: `npm install`
 
 You well also need mongoDB installed.  You can find installers on their [site](http://www.mongodb.org/downloads). You can also
 find installation guides [here](http://docs.mongodb.org/manual/installation/) to help you get up and running with mongo.

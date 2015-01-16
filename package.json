@@ -15,6 +15,7 @@
     "jade": "~1.8.2",
     "mongodb": "*",
     "mongoskin": "*",
+    "mongo-sanitize": "*",
     "bl": "*"
   }
 }
