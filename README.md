@@ -41,3 +41,7 @@ always returns a director JSON object in the same format given about.
 Given a JSON object with the format `{ favorite_camera : <string>, favorite_movies : <array> }` queries the database for a 
 director with the livestream_id field equal to the :id parameter.  If it exists, it updates the two fields with the data in the
 given JSON object.  If the director does not exist, returns a JSON object with a `msg` field describing the error.
+
+## Testing
+You can run `make test` from a command prompt to run automated tests on the API.  The tests add two directors, list them, update 
+them, and delete them.  They essentially validate basic CRUD functions. 
