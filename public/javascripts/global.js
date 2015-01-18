@@ -6,6 +6,7 @@ var selectedUserID;
 $(document).ready(function() {
 	populateTable();
 	$('#userList table tbody').on('click', 'td a.linkshowdirector', showUserInfo);
+	$('#userList table tbody').on('click', 'td a.linkdeleteuser', deleteUser);
 	// Add User button click
 	$('#btnTest').on('click', addUser);
 	$('#btnEdit').on('click', editUser);
@@ -25,7 +26,7 @@ function populateTable() {
 			tableContent += '<tr>';
 			tableContent += '<td><a href="#" class="linkshowdirector" rel="' + this.livestream_id + '" title="Show Details">' + this.full_name + '</a></td>';
 			tableContent += '<td>' + this.dob + '</td>';
-			tableContent += '<td><a href="#" class="linkdeleteuser" rel="' + this._id + '">delete</a></td>';
+			tableContent += '<td><a href="#" class="linkdeleteuser" rel="' + this.livestream_id + '">delete</a></td>';
 			tableContent += '</tr>';
 		});
 

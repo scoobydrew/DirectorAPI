@@ -17,6 +17,7 @@ router.get('/', function(req, res) {
 router.get('/directorlist', function(req, res) {
 	var db = req.db;
 	db.collection('directorlist').find().toArray(function(err, items) {
+		res.setHeader('Content-Type', 'application/json');
 		res.json(items);
 	});
 });
@@ -117,12 +118,14 @@ router.post('/director/:id', function(req, res) {
 				}
 			}, function(err, result) {
 				if (err) {
+					res.setHeader('Content-Type', 'application/json');
 					res.send({
 						msg : "Director could not be updated."
 					});
 					res.end();
 					return;
 				} else if (result) {
+					res.setHeader('Content-Type', 'application/json');
 					res.send({
 						msg : ""
 					});
@@ -140,11 +143,14 @@ router.post('/director/:id', function(req, res) {
 router.delete('/deletedirector/:id', function(req, res) {
 	var db = req.db;
 	var userToDelete = req.params.id;
-	db.collection('directorlist').removeById(userToDelete, function(err, result) {
+	db.collection('directorlist').remove({
+		livestream_id : sanitize(+userToDelete)
+	}, function(err, result) {
+		res.setHeader('Content-Type', 'application/json');
 		res.send((result === 1) ? {
 			msg : ''
 		} : {
-			msg : 'error: ' + err
+			msg : err
 		});
 	});
 });

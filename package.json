@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "test": "make test"
   },
   "dependencies": {
     "express": "~4.10.6",
@@ -17,5 +18,9 @@
     "mongoskin": "*",
     "mongo-sanitize": "*",
     "bl": "*"
+  },
+  "devDependencies": {
+    "mocha": "^2.1.0",
+    "supertest": "*"
   }
 }
