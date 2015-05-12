@@ -1,5 +1,5 @@
 # DirectorAPI
-For Livestream interview coding exercise.
+Experimenting with Node.JS and external site APIs.
 
 ## Setup
 Clone the repository into the directory of your choosing.  You will need to have Node.JS installed to run the webserver. 
